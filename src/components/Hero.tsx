@@ -257,8 +257,8 @@ const Hero: React.FC = () => {
               ref={descriptionRef}
               className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
             >
-              Transforming complex fintech challenges into elegant solutions. 
-              From processing $50M+ transactions to leading teams that build the future of finance.
+              Transforming complex business requirements into elegant solutions. 
+              Passionate about building scalable applications and enhancing user experiences through innovative design and technology.
             </p>
           </div>
 
