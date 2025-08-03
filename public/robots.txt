@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow admin routes from being crawled
+Disallow: /admin/
+Disallow: /signin
+
+# Sitemap location
+Sitemap: https://devferanmi.xyz/sitemap.xml
