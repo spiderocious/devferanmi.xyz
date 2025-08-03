@@ -1,0 +1,22 @@
+# Set CORS headers for all routes
+/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+  Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With
+  Access-Control-Max-Age: 86400
+
+# Specific headers for API routes (if you have any)
+/api/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+  Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With
+  Access-Control-Max-Age: 86400
+
+# Allow sitemap and robots.txt to be accessed from anywhere
+/sitemap.xml
+  Access-Control-Allow-Origin: *
+  Content-Type: application/xml
+
+/robots.txt
+  Access-Control-Allow-Origin: *
+  Content-Type: text/plain

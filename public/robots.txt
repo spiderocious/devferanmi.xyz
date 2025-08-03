@@ -1,3 +1,5 @@
+# Custom robots.txt for devferanmi.xyz portfolio
+
 User-agent: *
 Allow: /
 
