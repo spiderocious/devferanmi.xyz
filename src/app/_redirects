@@ -1,0 +1,8 @@
+# Redirect all non-static files to index.html for client-side routing
+/*    /index.html   200
+
+# Ensure sitemap.xml is served correctly
+/sitemap.xml    /sitemap.xml   200
+
+# Ensure robots.txt is served correctly  
+/robots.txt     /robots.txt    200
