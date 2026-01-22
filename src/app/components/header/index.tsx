@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { GithubIcon, LinkedinIcon, MailIcon } from "lucide-react";
 import { LinkPreview } from "../link-preview";
@@ -7,39 +8,19 @@ export default function Header() {
     <header className="mb-12">
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
         <div className="flex-1">
+          <LinkPreview url="https://github.com/spiderocious/">
+            <img
+              src="/feranmi.png"
+              alt="Oluwaferanmi Adeniji"
+              className="h-24 rounded-xl mt-8 mb-4"
+            />
+          </LinkPreview>
           <h1 className="text-2xl font-medium tracking-tight mb-4 flex items-center justify-between lg:justify-start">
             <span>Hey, I&apos;m Feranmi</span>
           </h1>
 
           <div className="text-sm text-zinc-600 dark:text-zinc-400 mb-6 max-w-2xl">
-            Senior Frontend Engineer with 7+ years building content creation,
-            ecommerce, developer tools and financial platforms. Expert in
-            React/TypeScript/GraphQL with experience scaling applications to
-            10M+ users. Currently at{" "}
-            <LinkPreview url="https://moniepoint.com">
-              <span className="text-zinc-900 dark:text-zinc-100 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-                Moniepoint
-              </span>
-            </LinkPreview>
-            . Creator of{" "}
-            <LinkPreview
-              url="https://www.npmjs.com/package/connectic"
-              showPreview={false}
-            >
-              <span className="text-zinc-900 dark:text-zinc-100 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-                Connectic
-              </span>
-            </LinkPreview>{" "}
-            and{" "}
-            <LinkPreview url="https://www.npmjs.com/package/monie-utils">
-              <span className="text-zinc-900 dark:text-zinc-100 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-                Monie Utils
-              </span>
-            </LinkPreview>
-            .
-          </div>
-          <div className="text-sm text-zinc-600 dark:text-zinc-400 mb-6 max-w-2xl">
-            I'm a Senior Frontend Engineer with 7+ years crafting digital
+            I&apos;m a Senior Frontend Engineer with 7+ years crafting digital
             experiences across fintech, ecommerce, and developer tools. I care
             deeply about performance, clean architecture, and building products
             that genuinely help people. Currently at{" "}
@@ -48,8 +29,8 @@ export default function Header() {
                 Moniepoint
               </span>
             </LinkPreview>
-            , where I lead frontend systems serving 10M+ users and processing
-            $1B+ annually. I also maintain open-source libraries like{" "}
+            , where I contribute to frontend systems serving 10M+ users and
+            processing $1B+ annually. I also maintain open-source libraries like{" "}
             <LinkPreview
               url="https://www.npmjs.com/package/connectic"
               showPreview={false}
@@ -64,7 +45,7 @@ export default function Header() {
                 Monie Utils
               </span>
             </LinkPreview>{" "}
-            — because building useful things is what gets me out of bed.
+            because building useful things is what gets me out of bed.
           </div>
         </div>
 
