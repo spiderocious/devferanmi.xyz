@@ -21,6 +21,54 @@ import { ProjectCard } from "./project-card";
 export default function Projects() {
   const projects = [
     {
+      title: "Watchdog",
+      description:
+        "Real-time uptime monitoring platform with SCADA-inspired dashboard. Scheduled HTTP health checks, consecutive failure tracking, and service lifecycle management.",
+      badge: "Full-Stack App",
+      impacts:
+        "Full-stack monitoring tool with 15 API endpoints, in-process timer engine for scheduled checks, and industrial dark-themed dashboard with telemetry and diagnostics.",
+      links: [
+        { url: "https://watchdog.devferanmi.xyz/", label: "Demo" },
+        {
+          url: "https://github.com/spiderocious/watchdog-frontend",
+          label: "GitHub Frontend",
+        },
+        {
+          url: "https://github.com/spiderocious/watchdog-backend",
+          label: "GitHub Backend",
+        },
+      ],
+      techStack: [
+        { name: "React", icon: <Preact className="w-4 h-4" /> },
+        { name: "TypeScript", icon: <TypeScript className="w-4 h-4" /> },
+        { name: "Node.js", icon: <Nodejs className="w-4 h-4" /> },
+        { name: "Express", icon: <ExpressjsDark className="w-4 h-4" /> },
+        { name: "MongoDB", icon: <MongoDBDark className="w-4 h-4" /> },
+        { name: "Tailwind", icon: <TailwindCSS className="w-4 h-4" /> },
+      ],
+    },
+    {
+      title: "PromptBasket",
+      description:
+        "Prompt management tool for organizing AI prompts. Bucket organization, markdown support with live preview, smart search by title, content, or tags.",
+      badge: "React App",
+      impacts:
+        "Intuitive prompt organizer with colorful bucket system, markdown editor, and local-first storage. Feature-sliced architecture with storage abstraction for future backend integration.",
+      links: [
+        { url: "https://promptbasket.devferanmi.xyz/", label: "Demo" },
+        {
+          url: "https://github.com/spiderocious/prompt-basket-frontend",
+          label: "GitHub",
+        },
+      ],
+      techStack: [
+        { name: "React", icon: <Preact className="w-4 h-4" /> },
+        { name: "TypeScript", icon: <TypeScript className="w-4 h-4" /> },
+        { name: "Vite", icon: <Vite className="w-4 h-4" /> },
+        { name: "Tailwind", icon: <TailwindCSS className="w-4 h-4" /> },
+      ],
+    },
+    {
       title: "BuffByte AI",
       description:
         "AI-powered content optimization platform with real-time analysis, trend discovery, and professional teleprompter. Multi-platform optimization for YouTube, TikTok, Instagram.",
