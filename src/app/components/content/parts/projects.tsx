@@ -21,6 +21,32 @@ import { ProjectCard } from "./project-card";
 export default function Projects() {
   const projects = [
     {
+      title: "TrustRail",
+      description:
+        "B2B trust orchestration platform for Nigerian businesses. AI-powered bank statement analysis, trust scoring, automated installment payments via NIBSS direct debit.",
+      badge: "Fintech Platform",
+      impacts:
+        "AI-powered BNPL platform enabling businesses to offer installment payments. Features GPT-4 bank statement analysis, trust scoring (0-100), and automated payment collection via PayWithAccount/NIBSS.",
+    links: [
+        {
+          url: "https://github.com/spiderocious/trustrail-frontend",
+          label: "GitHub Frontend",
+        },
+        {
+          url: "https://github.com/spiderocious/trustrail-backend",
+          label: "GitHub Backend",
+        },
+      ],
+      techStack: [
+        { name: "React", icon: <Preact className="w-4 h-4" /> },
+        { name: "TypeScript", icon: <TypeScript className="w-4 h-4" /> },
+        { name: "Node.js", icon: <Nodejs className="w-4 h-4" /> },
+        { name: "Express", icon: <ExpressjsDark className="w-4 h-4" /> },
+        { name: "MongoDB", icon: <MongoDBDark className="w-4 h-4" /> },
+        { name: "OpenAI", icon: <OpenAIDark className="w-4 h-4" /> },
+      ],
+    },
+    {
       title: "Watchdog",
       description:
         "Real-time uptime monitoring platform with SCADA-inspired dashboard. Scheduled HTTP health checks, consecutive failure tracking, and service lifecycle management.",
