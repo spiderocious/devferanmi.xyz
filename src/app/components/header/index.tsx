@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { GithubIcon, LinkedinIcon, MailIcon } from "lucide-react";
+import { BookOpenIcon, GithubIcon, LinkedinIcon, MailIcon } from "lucide-react";
 import { LinkPreview } from "../link-preview";
 
 export default function Header() {
@@ -50,6 +50,15 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-5">
+          <a
+            className="overflow-hidden transition-all text-zinc-900/60 dark:text-zinc-100/60 hover:text-zinc-900 dark:hover:text-zinc-100"
+            href="/blog"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <BookOpenIcon className="h-5 w-5" />
+            <p className="sr-only">blog</p>
+          </a>
           <a
             target="_blank"
             className="overflow-hidden transition-all text-zinc-900/60 dark:text-zinc-100/60 hover:text-zinc-900 dark:hover:text-zinc-100"

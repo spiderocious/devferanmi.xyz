@@ -1,0 +1,56 @@
+[
+  {
+    "category": "Leadership & Mentorship",
+    "skills": [
+      "Mentoring junior & mid-level engineers",
+      "Technical decision-making & trade-off analysis",
+      "Leading by example through code reviews",
+      "Onboarding & knowledge transfer"
+    ]
+  },
+  {
+    "category": "Communication",
+    "skills": [
+      "Translating technical concepts for non-technical stakeholders",
+      "Clear async & written communication",
+      "Documentation & technical writing",
+      "Cross-functional collaboration"
+    ]
+  },
+  {
+    "category": "Collaboration",
+    "skills": [
+      "Pair programming",
+      "Working across distributed/remote teams",
+      "Stakeholder management",
+      "Constructive, empathetic code review"
+    ]
+  },
+  {
+    "category": "Problem Solving",
+    "skills": [
+      "Root-cause analysis",
+      "Breaking down ambiguous problems",
+      "Pragmatic prioritisation under constraints",
+      "Debugging complex, high-scale systems"
+    ]
+  },
+  {
+    "category": "Ownership & Delivery",
+    "skills": [
+      "End-to-end feature ownership",
+      "Bias for shipping & iterating",
+      "Reliability & on-call mindset",
+      "Balancing speed with quality"
+    ]
+  },
+  {
+    "category": "Ways of Working",
+    "skills": [
+      "Agile / Scrum",
+      "Continuous learning",
+      "Adaptability to changing requirements",
+      "Calm under pressure & tight deadlines"
+    ]
+  }
+]

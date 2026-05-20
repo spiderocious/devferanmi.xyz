@@ -1,0 +1,117 @@
+"use client";
+
+import { useCallback, useMemo, type ReactNode } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { ArrowLeftIcon } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs";
+import { ENABLED_TABS, type TabKey } from "./content/tabs-config";
+
+const VALID_KEYS = new Set<string>(ENABLED_TABS.map((t) => t.key));
+const DEFAULT_TAB: TabKey = ENABLED_TABS[0]?.key ?? "projects";
+const LABELS: Partial<Record<TabKey, string>> = Object.fromEntries(
+  ENABLED_TABS.map((t) => [t.key, t.label])
+);
+
+function isEnabledTab(value: string | null): value is TabKey {
+  return !!value && VALID_KEYS.has(value);
+}
+
+const triggerCls =
+  "!bg-transparent !border-none !shadow-none !font-medium data-[state=active]:!bg-white dark:data-[state=active]:!bg-zinc-800 data-[state=active]:!text-zinc-900 dark:data-[state=active]:!text-zinc-100 !text-zinc-600 dark:!text-zinc-400 transition-all duration-300 ease-out";
+
+export function AppShell({
+  header,
+  panels,
+}: {
+  header: ReactNode;
+  panels: Partial<Record<TabKey, ReactNode>>;
+}) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const tabParam = searchParams.get("tab");
+  const tab: TabKey = isEnabledTab(tabParam) ? tabParam : DEFAULT_TAB;
+  const focus = searchParams.get("focus") === "true";
+
+  const buildUrl = useCallback(
+    (next: { tab?: TabKey; focus?: boolean | null }) => {
+      const sp = new URLSearchParams(searchParams.toString());
+      if (next.tab) sp.set("tab", next.tab);
+      if (next.focus === false || next.focus === null) sp.delete("focus");
+      if (next.focus === true) sp.set("focus", "true");
+      const qs = sp.toString();
+      return qs ? `${pathname}?${qs}` : pathname;
+    },
+    [pathname, searchParams]
+  );
+
+  const onTabChange = useCallback(
+    (value: string) => {
+      if (!isEnabledTab(value)) return;
+      router.replace(buildUrl({ tab: value }), { scroll: false });
+    },
+    [router, buildUrl]
+  );
+
+  const exitFocus = useCallback(() => {
+    router.replace(buildUrl({ focus: false }), { scroll: false });
+  }, [router, buildUrl]);
+
+  const focusTitle = useMemo(() => LABELS[tab], [tab]);
+
+  return (
+    <>
+      {!focus && header}
+
+      <section>
+        {focus ? (
+          <div className="mb-6 flex items-center justify-between gap-3">
+            <button
+              type="button"
+              onClick={exitFocus}
+              className="inline-flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors group"
+            >
+              <ArrowLeftIcon className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+              <span>back to overview</span>
+            </button>
+            <h2 className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
+              {focusTitle}
+            </h2>
+          </div>
+        ) : null}
+
+        <Tabs
+          value={tab}
+          onValueChange={onTabChange}
+          className="flex flex-col gap-4"
+        >
+          {!focus && (
+            <TabsList className="text-muted-foreground inline-flex h-10 w-full lg:w-fit items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 p-1">
+              {ENABLED_TABS.map((t) => (
+                <TabsTrigger key={t.key} value={t.key} className={triggerCls}>
+                  {t.label}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          )}
+
+          {/* forceMount keeps every panel in the DOM, eliminating the layout
+              shift Radix triggers on first mount of heavy panels (e.g. the
+              SVGL-icon-heavy Technical Skills panel). Inactive panels are
+              hidden via data-state. */}
+          {ENABLED_TABS.map((t) => (
+            <TabsContent
+              key={t.key}
+              value={t.key}
+              forceMount
+              className="flex-1 outline-none mt-8 data-[state=inactive]:hidden"
+            >
+              {panels[t.key]}
+            </TabsContent>
+          ))}
+        </Tabs>
+      </section>
+    </>
+  );
+}

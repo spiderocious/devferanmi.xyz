@@ -1,6 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SITE } from "./shared/seo/config";
+import { LlmFloatingTrigger } from "./components/llm-trigger";
+import { HelloPopup } from "./components/hello-popup";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +17,83 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Oluwaferanmi Adeniji - Senior Software Engineer",
-  description: "Senior Software Engineer with 7+ years of fintech experience. Specialized in micro-frontend architectures and high-scale systems.",
+  metadataBase: new URL(SITE.url),
+  title: {
+    default: `${SITE.name} — ${SITE.tagline}`,
+    template: `%s — ${SITE.name}`,
+  },
+  description: SITE.description,
+  applicationName: SITE.name,
+  authors: [{ name: SITE.author.name, url: SITE.url }],
+  creator: SITE.author.name,
+  publisher: SITE.author.name,
+  keywords: SITE.keywords,
+  category: "technology",
+  generator: "Next.js",
+  referrer: "origin-when-cross-origin",
+  formatDetection: { email: false, address: false, telephone: false },
+  alternates: {
+    canonical: SITE.url,
+    languages: { "en-US": SITE.url },
+    types: { "application/rss+xml": `${SITE.social.blog}/rss.xml` },
+  },
+  openGraph: {
+    type: "website",
+    siteName: SITE.name,
+    title: `${SITE.name} — ${SITE.tagline}`,
+    description: SITE.description,
+    url: SITE.url,
+    locale: SITE.locale,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: SITE.name,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE.name} — ${SITE.tagline}`,
+    description: SITE.description,
+    creator: SITE.handle,
+    site: SITE.handle,
+    images: ["/opengraph-image"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  icons: {
+    icon: [{ url: "/feranmi.png", type: "image/png", sizes: "any" }],
+    apple: [{ url: "/feranmi.png", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/feranmi.png"],
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+    other: {
+      "msvalidate.01": process.env.BING_SITE_VERIFICATION ?? "",
+    },
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+  colorScheme: "dark light",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({
@@ -24,54 +103,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <meta charSet="UTF-8" />
-        <link rel="icon" type="image/png" href="/feranmi.png" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Oluwaferanmi Adeniji - Senior Software Engineer</title>
-
-        {/* <!-- PWA Manifest --> */}
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#3b82f6" />
-
-        {/* <!-- SEO Meta Tags --> */}
-        <meta
-          name="description"
-          content="Senior Software Engineer with 7+ years of fintech experience. Specialized in micro-frontend architectures and high-scale systems."
-        />
-        <meta
-          name="keywords"
-          content="Software Engineer, Frontend Developer, React, TypeScript, Fintech, Micro-frontends, Performance Engineering"
-        />
-        <meta name="author" content="Oluwaferanmi Adeniji" />
-
-        {/* <!-- Open Graph Tags --> */}
-        <meta
-          property="og:title"
-          content="Oluwaferanmi Adeniji - Senior Software Engineer"
-        />
-        <meta
-          property="og:description"
-          content="Senior Software Engineer with 7+ years of fintech experience. Specialized in micro-frontend architectures and high-scale systems."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://devferanmi.xyz" />
-
-        {/* <!-- Twitter Card Tags --> */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Oluwaferanmi Adeniji - Senior Software Engineer"
-        />
-        <meta
-          name="twitter:description"
-          content="Senior Software Engineer with 7+ years of fintech experience. Specialized in micro-frontend architectures and high-scale systems."
-        />
-      </head>
+      <Script src="https://scripts.simpleanalyticscdn.com/latest.js"  />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <HelloPopup />
+        <LlmFloatingTrigger />
       </body>
     </html>
   );

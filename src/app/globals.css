@@ -19,8 +19,227 @@
   }
 }
 
+/* Always reserve the vertical scrollbar track so the page width never
+   changes when switching tabs (short tab → no scrollbar, tall tab →
+   scrollbar). Without this the whole layout nudges horizontally on every
+   tab change. */
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ─── Hashnode article body ──────────────────────────────────────────── */
+.hashnode-body {
+  font-size: 16px;
+  line-height: 1.75;
+}
+.hashnode-body h1,
+.hashnode-body h2,
+.hashnode-body h3,
+.hashnode-body h4 {
+  color: var(--foreground);
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+.hashnode-body h1 { font-size: 1.875rem; }
+.hashnode-body h2 { font-size: 1.5rem; }
+.hashnode-body h3 { font-size: 1.25rem; }
+.hashnode-body h4 { font-size: 1.1rem; }
+.hashnode-body p { margin: 1rem 0; }
+.hashnode-body a {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.hashnode-body a:hover { opacity: 0.7; }
+.hashnode-body ul,
+.hashnode-body ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+.hashnode-body ul { list-style: disc; }
+.hashnode-body ol { list-style: decimal; }
+.hashnode-body li { margin: 0.35rem 0; }
+.hashnode-body blockquote {
+  border-left: 3px solid rgba(127, 127, 127, 0.3);
+  padding-left: 1rem;
+  margin: 1.25rem 0;
+  color: rgba(127, 127, 127, 1);
+  font-style: italic;
+}
+.hashnode-body code {
+  background: rgba(127, 127, 127, 0.15);
+  padding: 0.125rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}
+.hashnode-body pre {
+  background: #0a0a0a;
+  color: #fafafa;
+  padding: 1rem 1.1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.25rem 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.hashnode-body pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+  font-size: inherit;
+}
+.hashnode-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: 1.25rem 0;
+}
+.hashnode-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 0.9rem;
+}
+.hashnode-body th,
+.hashnode-body td {
+  border: 1px solid rgba(127, 127, 127, 0.3);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+.hashnode-body th {
+  background: rgba(127, 127, 127, 0.08);
+  font-weight: 600;
+}
+.hashnode-body hr {
+  border: none;
+  border-top: 1px solid rgba(127, 127, 127, 0.25);
+  margin: 2rem 0;
+}
+
+/* ─── Chat markdown — tighter than hashnode-body for chat bubbles ───── */
+.chat-markdown {
+  font-size: 12px;
+  line-height: 1.6;
+}
+@media (min-width: 640px) {
+  .chat-markdown { font-size: 14px; }
+}
+.chat-markdown > *:first-child { margin-top: 0; }
+.chat-markdown > *:last-child  { margin-bottom: 0; }
+.chat-markdown p { margin: 0.4rem 0; }
+.chat-markdown h1,
+.chat-markdown h2,
+.chat-markdown h3,
+.chat-markdown h4 {
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  margin: 0.9rem 0 0.4rem;
+}
+.chat-markdown h1 { font-size: 1.05rem; }
+.chat-markdown h2 { font-size: 1rem; }
+.chat-markdown h3 { font-size: 0.95rem; }
+.chat-markdown h4 { font-size: 0.9rem; }
+.chat-markdown ul,
+.chat-markdown ol {
+  margin: 0.4rem 0;
+  padding-left: 1.25rem;
+}
+.chat-markdown ul { list-style: disc; }
+.chat-markdown ol { list-style: decimal; }
+.chat-markdown li { margin: 0.15rem 0; }
+.chat-markdown li > p { margin: 0.15rem 0; }
+.chat-markdown blockquote {
+  border-left: 2px solid rgba(127, 127, 127, 0.35);
+  padding-left: 0.75rem;
+  margin: 0.5rem 0;
+  color: inherit;
+  opacity: 0.85;
+}
+.chat-markdown code {
+  background: rgba(127, 127, 127, 0.18);
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}
+.chat-markdown pre {
+  background: #0a0a0a;
+  color: #fafafa;
+  padding: 0.75rem 0.85rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 0.6rem 0;
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+.chat-markdown pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+  font-size: inherit;
+}
+.chat-markdown hr {
+  border: none;
+  border-top: 1px solid rgba(127, 127, 127, 0.25);
+  margin: 0.75rem 0;
+}
+.chat-markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0;
+  font-size: 0.85rem;
+}
+.chat-markdown th,
+.chat-markdown td {
+  border: 1px solid rgba(127, 127, 127, 0.3);
+  padding: 0.35rem 0.5rem;
+  text-align: left;
+}
+.chat-markdown th {
+  background: rgba(127, 127, 127, 0.08);
+  font-weight: 600;
+}
+.chat-markdown strong { font-weight: 600; }
+.chat-markdown em { font-style: italic; }
+
+/* ─── Floating LLM trigger — gentle bounce ───────────────────────────── */
+@keyframes llm-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+@keyframes llm-bounce-strong {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-4px); }
+}
+.llm-trigger-bounce {
+  animation: llm-bounce 2.4s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+.llm-trigger-bounce:hover {
+  animation: llm-bounce-strong 0.8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .llm-trigger-bounce,
+  .llm-trigger-bounce:hover { animation: none; }
+}
+
+/* ─── Highlight.js — minimal, theme-agnostic ─────────────────────────── */
+.hljs { color: #fafafa; background: transparent; }
+.hljs-comment, .hljs-quote { color: #71717a; font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-title, .hljs-section, .hljs-doctag, .hljs-type, .hljs-name, .hljs-strong { color: #c084fc; }
+.hljs-string, .hljs-attr { color: #4ade80; }
+.hljs-number, .hljs-symbol, .hljs-bullet { color: #f59e0b; }
+.hljs-variable, .hljs-template-variable, .hljs-built_in, .hljs-builtin-name { color: #60a5fa; }
+.hljs-meta, .hljs-tag, .hljs-regexp { color: #fb7185; }
