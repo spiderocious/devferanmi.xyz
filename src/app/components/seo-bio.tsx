@@ -25,25 +25,6 @@ export function SeoBio() {
         and processing $1B+ in payments annually.
       </p>
 
-      <p>
-        He is a builder and problem solver at heart: a React engineer and
-        TypeScript engineer who ships fintech systems, developer tools, and
-        AI-powered products. His core stack is React, Next.js, TypeScript, and
-        Node.js, with hands-on experience in micro-frontend architecture,
-        design systems, and performance engineering. He is actively growing
-        toward lead engineer, staff engineer, and principal engineer roles, and
-        is exploring backend systems in Golang and Elixir.
-      </p>
-
-      <p>
-        As a software engineer in Nigeria and across Africa, Feranmi is open to
-        senior, lead, and principal engineering opportunities — whether based in
-        Ogbomoso, Lagos, elsewhere in Nigeria, remote across Africa, or
-        worldwide. He maintains open-source libraries including Connectic and
-        Monie Utils, and considers himself part of a generation of emerging
-        engineering talent solving real problems on the continent.
-      </p>
-
       <p className="text-zinc-500 dark:text-zinc-400">
         Areas of focus: senior frontend engineering, micro-frontends, fintech
         and payment systems, KYC and compliance, loan management, system design,
