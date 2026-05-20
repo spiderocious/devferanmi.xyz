@@ -21,8 +21,7 @@ export function SeoBio() {
         — also written Feranmi Adeniji, Adeniji Feranmi, or Adeniji Adewale
         Oluwaferanmi — is a senior software engineer and frontend engineer from
         Ogbomoso, Nigeria, currently based in Lagos. With 7+ years building
-        production software, he works as a senior software engineer at
-        Moniepoint, where he contributes to frontend systems serving 10M+ users
+        production software, he contributes to frontend systems serving millions of users
         and processing $1B+ in payments annually.
       </p>
 
@@ -45,7 +44,7 @@ export function SeoBio() {
         engineering talent solving real problems on the continent.
       </p>
 
-      <p className="text-zinc-500 dark:text-zinc-500">
+      <p className="text-zinc-500 dark:text-zinc-400">
         Areas of focus: senior frontend engineering, micro-frontends, fintech
         and payment systems, KYC and compliance, loan management, system design,
         developer tooling, and applied AI. Open to React, TypeScript, Node.js,

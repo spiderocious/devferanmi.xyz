@@ -240,7 +240,6 @@ export function LlmChat() {
 }
 
 const CAN_ASK = [
-  "His current role and what he's shipping at Moniepoint.",
   "Open-source work — Connectic, Monie Utils, and more.",
   "Fintech experience: payments, KYC, loan management.",
   "Frontend specialism — micro-frontends, design systems, performance.",

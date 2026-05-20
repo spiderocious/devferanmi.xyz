@@ -39,7 +39,7 @@ function FaqSchema() {
         name: "Who is Feranmi Adeniji?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Oluwaferanmi Adeniji is a Senior Software Engineer based in Lagos, Nigeria with 7+ years of experience. He currently works at Moniepoint where he contributes to frontend systems serving 10M+ users and processing $1B+ in payment volume annually.",
+          text: "Oluwaferanmi Adeniji is a Senior Software Engineer based in Lagos, Nigeria with 7+ years of experience. He currently works at Moniepoint where he contributes to frontend systems serving millions of users and processing $1B+ in payment volume annually.",
         },
       },
       {

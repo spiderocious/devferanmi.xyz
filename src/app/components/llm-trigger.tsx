@@ -12,8 +12,8 @@ export function LlmFloatingTrigger() {
     <Link
       href="/llm"
       prefetch
-      aria-label="Ask Feranmi.ai anything"
-      title="Ask Feranmi.ai anything"
+      aria-label="Ask me anything — Feranmi.ai"
+      title="Ask me anything — Feranmi.ai"
       data-llm-trigger
       className="llm-trigger-bounce fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex items-center gap-2 pl-3 pr-4 py-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 shadow-lg hover:shadow-xl active:scale-95 transition-shadow"
     >

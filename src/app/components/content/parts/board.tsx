@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import dynamic from "next/dynamic";
 import type {
   BoardGrouped,
   BoardItem,
@@ -10,6 +9,12 @@ import type {
   BoardCategory,
   SubItem,
 } from "../../../shared/api";
+
+// Lazy-loaded so the markdown/micromark stack is code-split out of the
+// homepage's initial JS — fetched only when a board card is expanded.
+const MarkdownBody = dynamic(() => import("./markdown-body"), {
+  loading: () => <p className="text-xs text-zinc-500 dark:text-zinc-400">…</p>,
+});
 
 const COLUMNS: Array<{ key: BoardStatus; label: string }> = [
   { key: "backlog", label: "Backlog" },
@@ -129,8 +134,8 @@ function MobileBoard({ board }: { board: BoardGrouped }) {
               <span
                 className={`tabular-nums text-[10px] ${
                   isActive
-                    ? "text-zinc-500 dark:text-zinc-400"
-                    : "text-zinc-400 dark:text-zinc-500"
+                    ? "text-zinc-600 dark:text-zinc-400"
+                    : "text-zinc-500 dark:text-zinc-400"
                 }`}
               >
                 {count.toString().padStart(2, "0")}
@@ -143,7 +148,7 @@ function MobileBoard({ board }: { board: BoardGrouped }) {
       {/* Active column's cards (no surrounding column chrome — the pill already labels it) */}
       <div className="flex flex-col gap-2.5">
         {items.length === 0 ? (
-          <p className="text-xs text-zinc-400 dark:text-zinc-500 py-6 text-center border border-dashed border-zinc-200 dark:border-zinc-800 rounded-md">
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 py-6 text-center border border-dashed border-zinc-200 dark:border-zinc-800 rounded-md">
             — nothing in this column —
           </p>
         ) : (
@@ -177,7 +182,7 @@ function Column({
 
       <div className="flex flex-col gap-2.5">
         {items.length === 0 ? (
-          <p className="text-xs text-zinc-400 dark:text-zinc-500 py-3 text-center">
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 py-3 text-center">
             — empty —
           </p>
         ) : (
@@ -238,9 +243,7 @@ function Card({ item }: { item: BoardItem }) {
         <div className="p-3 border-t border-zinc-200 dark:border-zinc-800 flex flex-col gap-3">
           {item.description && (
             <div className="text-sm text-zinc-600 dark:text-zinc-400 hashnode-body">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {item.description}
-              </ReactMarkdown>
+              <MarkdownBody>{item.description}</MarkdownBody>
             </div>
           )}
           {item.sub_items.length > 0 && (

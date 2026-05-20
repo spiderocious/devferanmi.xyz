@@ -117,11 +117,11 @@ export function LinkPreview({
                 <p className="text-sm text-zinc-600 dark:text-zinc-400 truncate">
                   {url}
                 </p>
-                <span className="text-xs text-zinc-400 dark:text-zinc-500">
+                <span className="text-xs text-zinc-400 dark:text-zinc-400">
                   {getDomain(url)}
                 </span>
               </div>
-              <ExternalLinkIcon className="h-4 w-4 text-zinc-400 dark:text-zinc-500 flex-shrink-0" />
+              <ExternalLinkIcon className="h-4 w-4 text-zinc-400 dark:text-zinc-400 flex-shrink-0" />
             </div>
           )}
 
@@ -156,10 +156,10 @@ export function LinkPreview({
                 )}
                 
                 <div className="flex items-center justify-between pt-2 border-t border-zinc-200 dark:border-zinc-700">
-                  <span className="text-xs text-zinc-500 dark:text-zinc-500">
+                  <span className="text-xs text-zinc-500 dark:text-zinc-400">
                     {ogData.siteName || getDomain(url)}
                   </span>
-                  <ExternalLinkIcon className="h-3 w-3 text-zinc-400 dark:text-zinc-500" />
+                  <ExternalLinkIcon className="h-3 w-3 text-zinc-400 dark:text-zinc-400" />
                 </div>
               </div>
             </>
@@ -173,7 +173,7 @@ export function LinkPreview({
                   {url}
                 </p>
               </div>
-              <ExternalLinkIcon className="h-4 w-4 text-zinc-400 dark:text-zinc-500 flex-shrink-0" />
+              <ExternalLinkIcon className="h-4 w-4 text-zinc-400 dark:text-zinc-400 flex-shrink-0" />
             </div>
           )}
         </div>

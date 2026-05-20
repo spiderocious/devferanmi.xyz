@@ -6,9 +6,9 @@ export const SITE = {
   locale: "en_US",
   tagline: "Senior Software Engineer · Lagos, Nigeria",
   description:
-    "Oluwaferanmi Adeniji — senior software engineer in Lagos, Nigeria. 7+ years shipping fintech systems, developer tools, and AI-powered products. Currently at Moniepoint: frontend systems serving 10M+ users and processing $1B+ annually. Open-source maintainer of Connectic and Monie Utils.",
+    "Oluwaferanmi Adeniji — senior software engineer in Lagos, Nigeria. 7+ years shipping fintech systems, developer tools, and AI-powered products. Currently at Moniepoint: frontend systems serving millions of users and processing $1B+ annually. Open-source maintainer of Connectic and Monie Utils.",
   shortDescription:
-    "Senior software engineer in Lagos. Fintech, developer tools, AI. 10M+ users at Moniepoint. Open-source: Connectic, Monie Utils.",
+    "Senior software engineer in Lagos. Fintech, developer tools, AI. millions of users at Moniepoint. Open-source: Connectic, Monie Utils.",
   keywords: [
     // Name variants
     "Oluwaferanmi Adeniji",

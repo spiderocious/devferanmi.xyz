@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
+import Image from "next/image";
 import { BookOpenIcon, GithubIcon, LinkedinIcon, MailIcon } from "lucide-react";
 import { LinkPreview } from "../link-preview";
 
@@ -9,10 +9,18 @@ export default function Header() {
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
         <div className="flex-1">
           <LinkPreview url="https://github.com/spiderocious/">
-            <img
+            {/* LCP element — explicit dimensions (matches the h-24 display box,
+                72×96 at the source 433×577 aspect ratio) prevent layout shift,
+                and `priority` marks it fetchpriority=high so it loads first.
+                next/image serves a right-sized WebP/AVIF in place of the 133 KB
+                PNG. */}
+            <Image
               src="/feranmi.png"
               alt="Oluwaferanmi Adeniji"
-              className="h-24 rounded-xl mt-8 mb-4"
+              width={72}
+              height={96}
+              priority
+              className="h-24 w-auto rounded-xl mt-8 mb-4"
             />
           </LinkPreview>
           <h1 className="text-2xl font-medium tracking-tight mb-4 flex items-center justify-between lg:justify-start">
@@ -29,7 +37,7 @@ export default function Header() {
                 Moniepoint
               </span>
             </LinkPreview>
-            , where I contribute to frontend systems serving 10M+ users and
+            , where I contribute to frontend systems serving millions of users and
             processing $1B+ annually. I also maintain open-source libraries like{" "}
             <LinkPreview
               url="https://www.npmjs.com/package/connectic"

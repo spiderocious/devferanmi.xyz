@@ -138,7 +138,7 @@ export default function OpengraphImage() {
                   display: "flex",
                 }}
               >
-                Moniepoint&apos;s loan systems — 10M+ users, zero downtime.
+                Moniepoint&apos;s loan systems — millions of users, zero downtime.
               </div>
             </div>
           </div>

@@ -139,6 +139,9 @@ export function AppShell({
                 forceMount
                 className="flex-1 outline-none mt-8 data-[state=inactive]:hidden"
               >
+                {/* Sr-only section heading anchors each panel's h3s under an h2,
+                    keeping the document heading order sequential (h1→h2→h3). */}
+                <h2 className="sr-only">{t.label}</h2>
                 {isMounted ? (
                   panels[t.key]
                 ) : isActive ? (

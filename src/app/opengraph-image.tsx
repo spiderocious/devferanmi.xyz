@@ -87,7 +87,7 @@ export default async function OpengraphImage() {
               display: "flex",
             }}
           >
-            Fintech · developer tools · AI. 10M+ users at Moniepoint. Open-source: Connectic, Monie Utils.
+            Fintech · developer tools · AI. millions of users at Moniepoint. Open-source: Connectic, Monie Utils.
           </div>
         </div>
 

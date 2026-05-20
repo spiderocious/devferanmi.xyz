@@ -99,7 +99,7 @@ export function TechBadge({ value }: { value: TechKey }) {
           <Icon className="w-4 h-4" />
         </span>
       )}
-      <span className="text-xs text-zinc-400 dark:text-zinc-500">{label}</span>
+      <span className="text-xs text-zinc-500 dark:text-zinc-400">{label}</span>
     </div>
   );
 }
