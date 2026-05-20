@@ -1,9 +1,17 @@
 "use client";
 
-import { useCallback, useMemo, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  useTransition,
+  type ReactNode,
+} from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeftIcon } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs";
+import { PanelSkeleton } from "./panel-skeleton";
 import { ENABLED_TABS, type TabKey } from "./content/tabs-config";
 
 const VALID_KEYS = new Set<string>(ENABLED_TABS.map((t) => t.key));
@@ -29,10 +37,31 @@ export function AppShell({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [, startTransition] = useTransition();
 
   const tabParam = searchParams.get("tab");
   const tab: TabKey = isEnabledTab(tabParam) ? tabParam : DEFAULT_TAB;
   const focus = searchParams.get("focus") === "true";
+
+  // Track which panels have ever been the active tab. A panel's heavy content
+  // is only built the first time it's opened; afterwards it stays mounted
+  // (hidden when inactive) so re-visits are instant and there's no layout shift.
+  const [mounted, setMounted] = useState<Set<TabKey>>(() => new Set([tab]));
+
+  // Mark the current tab as visited. Deferred via a transition so flipping the
+  // active tab (the highlight) stays instant while the heavy panel renders as a
+  // non-urgent update — the skeleton shows in the meantime.
+  useEffect(() => {
+    if (mounted.has(tab)) return;
+    startTransition(() => {
+      setMounted((prev) => {
+        if (prev.has(tab)) return prev;
+        const next = new Set(prev);
+        next.add(tab);
+        return next;
+      });
+    });
+  }, [tab, mounted]);
 
   const buildUrl = useCallback(
     (next: { tab?: TabKey; focus?: boolean | null }) => {
@@ -96,20 +125,28 @@ export function AppShell({
             </TabsList>
           )}
 
-          {/* forceMount keeps every panel in the DOM, eliminating the layout
-              shift Radix triggers on first mount of heavy panels (e.g. the
-              SVGL-icon-heavy Technical Skills panel). Inactive panels are
-              hidden via data-state. */}
-          {ENABLED_TABS.map((t) => (
-            <TabsContent
-              key={t.key}
-              value={t.key}
-              forceMount
-              className="flex-1 outline-none mt-8 data-[state=inactive]:hidden"
-            >
-              {panels[t.key]}
-            </TabsContent>
-          ))}
+          {/* Lazy keep-alive: a panel renders its real content only once it has
+              been visited (`mounted`), then stays in the DOM (hidden when
+              inactive) so re-visits are instant and there's no layout shift.
+              The active-but-not-yet-mounted tab shows a skeleton. */}
+          {ENABLED_TABS.map((t) => {
+            const isActive = t.key === tab;
+            const isMounted = mounted.has(t.key);
+            return (
+              <TabsContent
+                key={t.key}
+                value={t.key}
+                forceMount
+                className="flex-1 outline-none mt-8 data-[state=inactive]:hidden"
+              >
+                {isMounted ? (
+                  panels[t.key]
+                ) : isActive ? (
+                  <PanelSkeleton />
+                ) : null}
+              </TabsContent>
+            );
+          })}
         </Tabs>
       </section>
     </>
