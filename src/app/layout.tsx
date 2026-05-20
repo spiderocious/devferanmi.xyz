@@ -4,6 +4,7 @@ import "./globals.css";
 import { SITE } from "./shared/seo/config";
 import { LlmFloatingTrigger } from "./components/llm-trigger";
 import { HelloPopup } from "./components/hello-popup";
+import { WebMcp } from "./components/webmcp";
 import Script from "next/script";
 
 const geistSans = Geist({
@@ -110,6 +111,7 @@ export default function RootLayout({
         {children}
         <HelloPopup />
         <LlmFloatingTrigger />
+        <WebMcp />
       </body>
     </html>
   );

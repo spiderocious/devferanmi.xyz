@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
 /**
- * Edge middleware adding agent-discovery affordances per RFC 8288 (Link
- * headers) and the "Markdown for Agents" content-negotiation convention.
+ * Proxy (Next.js 16's renamed middleware) adding agent-discovery affordances
+ * per RFC 8288 (Link headers) and the "Markdown for Agents" content-negotiation
+ * convention.
  *
  *  - Markdown for Agents: a request for `/` with `Accept: text/markdown`
  *    preferred over `text/html` is rewritten to `/index.md`, which responds
@@ -39,7 +40,7 @@ function prefersMarkdown(accept: string | null): boolean {
   return md >= Math.max(html, 0);
 }
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const accept = req.headers.get("accept");
 
@@ -62,6 +63,6 @@ export const config = {
   // Run on pages and the homepage, but skip static assets, image routes, and
   // the API/well-known endpoints that already set their own headers.
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|feranmi.png|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|feranmi.png|robots.txt|sitemap.xml|manifest.webmanifest|.*\\.(?:png|jpg|jpeg|gif|svg|webp|ico)$).*)",
   ],
 };
