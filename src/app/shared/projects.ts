@@ -11,6 +11,11 @@ export interface Project {
   techStack: TechKey[];
   fullDetails: string;
   notes: string;
+  /** Optional product-demo video URL (e.g. an R2-hosted MP4). Shown on the
+   *  project detail page beneath the description when present. */
+  demo?: string;
+  /** Optional poster image shown before the demo video plays. */
+  demoPoster?: string;
 }
 
 export interface ProjectWithSlug extends Project {

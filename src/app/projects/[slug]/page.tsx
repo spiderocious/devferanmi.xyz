@@ -5,6 +5,7 @@ import { ArrowUpRightIcon } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getProjectBySlug, getProjectSlugs } from "../../shared/projects";
+import { DemoVideo } from "../../components/demo-video";
 import { ProjectLink } from "../../shared/project-link";
 import { TechBadge } from "../../shared/tech-icon";
 import { buildPageMetadata } from "../../shared/seo/metadata";
@@ -108,6 +109,15 @@ export default async function ProjectDetailPage({
             <p className="text-base text-zinc-700 dark:text-zinc-300">
               {project.description}
             </p>
+
+            {project.demo && (
+              <DemoVideo
+                src={project.demo}
+                poster={project.demoPoster}
+                title={project.title}
+                className="mt-6"
+              />
+            )}
 
             {project.impacts && (
               <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-3">
