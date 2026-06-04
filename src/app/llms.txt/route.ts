@@ -22,6 +22,7 @@ ${a.seeksRoles.join(", ")} roles across ${a.location.areaServed.join(", ")}.
 ## Key pages
 - [Portfolio home](${SITE.url}): bio, projects, experience, skills, and live board
 - [Projects](${absoluteUrl("/projects")}): full list of selected work
+- [Talks & workshops](${absoluteUrl("/talks")}): conference talks and speaking engagements
 - [Ask feranmi.ai](${absoluteUrl("/llm")}): an AI assistant grounded in Feranmi's work
 
 ## Structured data

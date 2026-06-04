@@ -8,14 +8,18 @@ import {
   useTransition,
   type ReactNode,
 } from "react";
+import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeftIcon } from "lucide-react";
+import { ArrowLeftIcon, ArrowUpRightIcon } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs";
 import { PanelSkeleton } from "./panel-skeleton";
 import { ENABLED_TABS, type TabKey } from "./content/tabs-config";
 
-const VALID_KEYS = new Set<string>(ENABLED_TABS.map((t) => t.key));
-const DEFAULT_TAB: TabKey = ENABLED_TABS[0]?.key ?? "projects";
+// Tabs that own a panel (no href). Outbound-link tabs are excluded from the
+// active-tab logic since they don't represent a panel state.
+const PANEL_TABS = ENABLED_TABS.filter((t) => !t.href);
+const VALID_KEYS = new Set<string>(PANEL_TABS.map((t) => t.key));
+const DEFAULT_TAB: TabKey = PANEL_TABS[0]?.key ?? "projects";
 const LABELS: Partial<Record<TabKey, string>> = Object.fromEntries(
   ENABLED_TABS.map((t) => [t.key, t.label])
 );
@@ -39,6 +43,10 @@ export function AppShell({
   const searchParams = useSearchParams();
   const [, startTransition] = useTransition();
 
+  // Read URL state lazily — null on the server (no `?tab=` available without a
+  // Suspense boundary that would blank out SSR), real on the client. The shell
+  // renders with the default tab on first paint so crawlers see the full nav,
+  // then syncs to the URL on hydration.
   const tabParam = searchParams.get("tab");
   const tab: TabKey = isEnabledTab(tabParam) ? tabParam : DEFAULT_TAB;
   const focus = searchParams.get("focus") === "true";
@@ -117,11 +125,22 @@ export function AppShell({
         >
           {!focus && (
             <TabsList className="text-muted-foreground inline-flex h-10 w-full lg:w-fit items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 p-1">
-              {ENABLED_TABS.map((t) => (
-                <TabsTrigger key={t.key} value={t.key} className={triggerCls}>
-                  {t.label}
-                </TabsTrigger>
-              ))}
+              {ENABLED_TABS.map((t) =>
+                t.href ? (
+                  <Link
+                    key={t.key}
+                    href={t.href}
+                    className={`${triggerCls} inline-flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-1 text-sm`}
+                  >
+                    {t.label}
+                    <ArrowUpRightIcon className="w-3 h-3 opacity-60" />
+                  </Link>
+                ) : (
+                  <TabsTrigger key={t.key} value={t.key} className={triggerCls}>
+                    {t.label}
+                  </TabsTrigger>
+                )
+              )}
             </TabsList>
           )}
 
@@ -129,7 +148,7 @@ export function AppShell({
               been visited (`mounted`), then stays in the DOM (hidden when
               inactive) so re-visits are instant and there's no layout shift.
               The active-but-not-yet-mounted tab shows a skeleton. */}
-          {ENABLED_TABS.map((t) => {
+          {PANEL_TABS.map((t) => {
             const isActive = t.key === tab;
             const isMounted = mounted.has(t.key);
             return (
