@@ -15,6 +15,33 @@ import {
 } from "../../shared/seo/jsonld";
 import { JsonLdScript } from "../../shared/seo/json-ld-script";
 
+// Render markdown links as <Link> when they target our own site (so they get
+// SPA-style nav + the route progress bar), and as external <a target=_blank>
+// otherwise. Without this, every markdown anchor is a full-page reload.
+const markdownComponents = {
+  a: ({
+    href,
+    children,
+    ...rest
+  }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+    const url = href ?? "";
+    const isInternal =
+      url.startsWith("/") && !url.startsWith("//");
+    if (isInternal) {
+      return (
+        <Link href={url} {...rest}>
+          {children}
+        </Link>
+      );
+    }
+    return (
+      <a href={url} target="_blank" rel="noopener noreferrer" {...rest}>
+        {children}
+      </a>
+    );
+  },
+};
+
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -80,6 +107,7 @@ export default async function ProjectDetailPage({
         <main className="flex-1 max-w-3xl mx-auto px-4 py-8 w-full">
           <Link
             href="/?tab=projects"
+            prefetch
             className="text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
           >
             ← all projects
@@ -149,7 +177,7 @@ export default async function ProjectDetailPage({
 
           {project.fullDetails && (
             <article className="hashnode-body text-zinc-700 dark:text-zinc-300">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                 {project.fullDetails}
               </ReactMarkdown>
             </article>
@@ -159,7 +187,7 @@ export default async function ProjectDetailPage({
             <section className="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800">
               <h2 className="text-md font-medium mb-4">Notes</h2>
               <div className="hashnode-body text-zinc-700 dark:text-zinc-300">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                   {project.notes}
                 </ReactMarkdown>
               </div>
@@ -169,6 +197,7 @@ export default async function ProjectDetailPage({
           <div className="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800">
             <Link
               href="/?tab=projects"
+              prefetch
               className="text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
             >
               ← back to all projects

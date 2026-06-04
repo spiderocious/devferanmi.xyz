@@ -129,7 +129,7 @@ export const SITE = {
     sameAs: [
       "https://github.com/spiderocious",
       "https://www.linkedin.com/in/oluwaferanmi-adeniji-aba341179/",
-      "https://devferanmi.hashnode.dev",
+      "https://blog.devferanmi.xyz",
       "https://twitter.com/devferanmi",
       "https://msmeafricaonline.com/national-youth-day-buhari-recognises-15-youth-innovators/",
     ],
@@ -138,7 +138,7 @@ export const SITE = {
   social: {
     github: "https://github.com/spiderocious",
     linkedin: "https://www.linkedin.com/in/oluwaferanmi-adeniji-aba341179/",
-    blog: "https://devferanmi.hashnode.dev",
+    blog: "https://blog.devferanmi.xyz",
     twitter: "https://twitter.com/devferanmi",
   },
   defaultOgImage: "/opengraph-image",
