@@ -1,0 +1,145 @@
+[
+  {
+    "title": "Maybe you only need VanillaJS",
+    "event": "DevFest Ibadan",
+    "year": "2025",
+    "location": "Ibadan, Nigeria",
+    "type": "talk",
+    "url": "https://docs.google.com/presentation/d/1kEBwyRp0gRxhitfAjBVd5q5TiXqUu_fVQXAb-pydMxc/edit",
+    "intro": "In a world where developers reach for a framework before writing a single line of code, this talk pushes back. Delivered at DevFest Ibadan 2025, it makes the case that modern JavaScript is powerful enough on its own for a surprising number of use cases — and that our instinct to always layer on React, Vue, or Angular deserves a second thought.\n\nThe talk walks through the real history of why frameworks won, what pain points they genuinely solved, and then challenges the audience to ask: when does adding a framework actually cost more than it gives? It covers reactivity, state, component reusability and DOM manipulation — all done in plain JavaScript — to show that the language has grown up.",
+    "excerpt": "\"Challenging the Framework-First Mindset\" — Agenda covers: why frameworks won, what JS became (2015–2025), when frameworks make sense (and when they don't), and a live feature showdown.",
+    "tags": ["JavaScript", "Frameworks", "Frontend"]
+  },
+  {
+    "title": "Migration to Microfrontends",
+    "event": "DevFest Ogbomoso",
+    "year": null,
+    "location": "Ogbomoso, Nigeria",
+    "type": "talk",
+    "url": "https://docs.google.com/presentation/d/1AHiOgQQunj8FO07tRjCospO-Iv_HI8BXHF9Zdt-ZHlI/edit",
+    "intro": "This talk traces the full history of web development — from the first website ever created in 1993 to the complex, monolithic frontend apps of today — and explains why microfrontends exist as a natural architectural response to that growth. It's a deep dive into how big teams can independently own, deploy, and scale different parts of a frontend without stepping on each other.\n\nDelivered at DevFest Ogbomoso, the session includes a live coding demo building a banking app and unpacks the trade-offs involved in splitting a frontend by domain — from routing strategies to the pros of frameworks applied at the micro level.",
+    "excerpt": "Agenda: How We Got Here (History), The Monolithic Problem, What are Microfrontends and when to use them, Microfrontend deepdive, Live Coding — Banking App.",
+    "tags": ["Microfrontends", "Architecture", "Frontend"]
+  },
+  {
+    "title": "Designing for Scale: Microservices, Caching & API Best Practices in Wallet Systems",
+    "event": "Workshop",
+    "year": null,
+    "location": "Ilorin, Nigeria",
+    "type": "workshop",
+    "url": "https://docs.google.com/presentation/d/1jZQkOuQnfMflj8QuvdV74mDEu-3NQDnIDkknYl-dQSQ/edit",
+    "intro": "A hands-on workshop tailored for engineers building financial systems, this session covers the four pillars of scalable backend design: scalability, microservices architecture, caching, and API best practices — all in the specific context of wallet and fintech systems where reliability and throughput are non-negotiable.\n\nThe workshop uses real-world architecture diagrams (including how Twitter and a fintech's API gateway are structured) to ground the theory, and closes with practical dos and don'ts for cache invalidation, eviction policies, rate limiting, pagination, and API versioning.",
+    "excerpt": "Workshop overview: \"1. Scalability 2. Microservices Architecture 3. Caching 4. API best strategies 5. Designing Wallet Systems\" — featuring live architecture diagrams for fintech and Twitter-scale systems.",
+    "tags": ["System Design", "Microservices", "Fintech", "Backend"]
+  },
+  {
+    "title": "Staying Relevant in the Age of AI",
+    "event": null,
+    "year": null,
+    "location": null,
+    "type": "talk",
+    "url": "https://docs.google.com/presentation/d/1ZjW4Jse47RRRJfYdO5fe5aAIF0hFVWTShPX2t9gcvyE/edit",
+    "intro": "This talk tackles the anxiety many developers feel about AI head-on. Drawing a direct parallel to the Industrial Revolution and the job displacement fears of the 1800s, it argues that the pattern repeats itself — and that the engineers who thrive are not those who resist AI, but those who evolve with it.\n\nThe session outlines a concrete path: becoming an expert-generalist, developing soft skills, and actively leveraging AI tools like GitHub Copilot, ChatGPT, and Gemini as force multipliers. It also honestly covers the cons — over-reliance, quality concerns, and ethical implications — making it a balanced, grounded talk rather than hype.",
+    "excerpt": "\"Organizations will be hunting expert-generalists... not just a specialist, but a well-rounded software engineer: with expertise in multiple areas, who's always the first to volunteer for challenging projects, curious, highly trainable, and extremely adaptable.\"",
+    "tags": ["AI", "Career", "Industry"]
+  },
+  {
+    "title": "Software Architecture and Worker Threads in JavaScript",
+    "event": null,
+    "year": null,
+    "location": null,
+    "type": "talk",
+    "url": "https://docs.google.com/presentation/d/1c3C9YzY3SNaBgfh6ouSH-9GABVXBTkiUZc6jDK6YxQk/edit",
+    "intro": "This technical deep-dive covers two interconnected topics that are critical for building performant JavaScript applications: software architecture patterns and worker threads. It walks through Monolithic, Microservices, Layered, and Event-Driven architecture — then shows how worker threads solve the single-threaded bottleneck problem JavaScript engineers hit when doing heavy computation.\n\nThe talk is richly practical, with real-world examples of worker thread use cases including image processing, encryption/decryption, data parsing, and background synchronization. It closes with a live coding challenge around a bank statement service using background JavaScript workers.",
+    "excerpt": "\"Worker Threads enable parallel execution of tasks, allowing the application to utilize multiple CPU cores efficiently. Tasks such as complex calculations or long-running operations can be delegated to worker threads.\"",
+    "tags": ["JavaScript", "Architecture", "Performance"]
+  },
+  {
+    "title": "Touch and Go: Harnessing Fingerprint Authentication with JavaScript",
+    "event": null,
+    "year": null,
+    "location": null,
+    "type": "talk",
+    "url": "https://docs.google.com/presentation/d/1Z3Qpp0CVOh5-w2K0t3SHWpWX-Nce9wKeDuWc932Fflo/edit",
+    "intro": "Passwords are a liability — this talk makes the case for biometric authentication on the web and shows exactly how to implement it using the WebAuthn API and the Credential Management API in JavaScript. It covers the full arc from the theory of fingerprint authentication to practical code implementation, making it accessible to frontend engineers who want to ship passwordless experiences.\n\nThe session includes implementation examples, best practices for user experience fallbacks, and a closing statement that frames fingerprint authentication as the future of secure, frictionless digital interaction.",
+    "excerpt": "\"No longer burdened by passwords, users can seamlessly access their accounts with a simple touch... 'Touch and Go' — where fingerprint authentication and exceptional software converge to create an unforgettable user experience, one impression at a time.\"",
+    "tags": ["WebAuthn", "Security", "JavaScript"]
+  },
+  {
+    "title": "Web Development — The Bits and Pieces",
+    "event": null,
+    "year": null,
+    "location": null,
+    "type": "talk",
+    "url": "https://docs.google.com/presentation/d/1V2jEaLohFlhkP2OqyNCJtFhdM_MpGsnOlssNAw4q6CM/edit",
+    "intro": "An accessible, foundational talk designed for people taking their first steps into web development. It demystifies the core infrastructure of the web — servers, DNS, IP addresses, browser engines, domain names — and explains the difference between websites and web applications before building up to what frontend and backend development actually involve.\n\nThe talk is interactive and welcoming, encouraging attendees to ask questions and take notes, and ends with a grounding reminder: \"How do I start? It all starts with your mindset.\" It covers tech stacks, no-code tools, and why web development matters across every industry.",
+    "excerpt": "Covers: WWW, Websites vs Web Apps, Web Servers, DNS/IP Addresses, Browser Engines, HTML/CSS/JavaScript, Backend languages (Python, Go, Rust, Java), and No-Code tools like Webflow and Bubble.",
+    "tags": ["Web Fundamentals", "Beginner", "Career"]
+  },
+  {
+    "title": "Introduction to Clean Code by Uncle Bob",
+    "event": null,
+    "year": null,
+    "location": null,
+    "type": "talk",
+    "url": "https://docs.google.com/presentation/d/1x9Dx9gcOEJDQMLsKtMojUF945NaG8K1tq51NWsYV7ho/edit",
+    "intro": "Inspired by Robert C. Martin's seminal work, this talk introduces the principles of clean code to developers who want to write software that is not just functional, but maintainable, readable, and built to last. It covers the full landscape — SOLID, DRY, KISS, YAGNI, Law of Demeter — with clear explanations of why each principle matters in real team environments.\n\nThe session dives deep into naming rules, function design, and the SOLID principles individually (SRP, OCP, LSP, DIP), making abstract software engineering philosophy concrete and actionable. A follow-up session on code implementation is also referenced.",
+    "excerpt": "\"Clean code embodies a set of principles and practices aimed at producing software that is easy to understand, modify, and maintain.\" Principles covered: SOLID, KISS, DRY, YAGNI, Fail Fast, Composition over Inheritance, Single Source of Truth.",
+    "tags": ["Clean Code", "Software Engineering", "Principles"]
+  },
+  {
+    "title": "Tech Careers of Tomorrow: Preparing for Emerging Tech Fields",
+    "event": null,
+    "year": null,
+    "location": null,
+    "type": "talk",
+    "url": "https://docs.google.com/presentation/d/1DIvypCivse0OywnqpyAZznEerQGzKO7ALHhtShJD578/edit",
+    "intro": "Opening with the striking stat — \"65% of today's students will work in jobs that don't exist yet\" — this talk paints a clear picture of how careers have already transformed in just five years and what the next wave looks like. It's a forward-looking, practical session aimed at students and early-career professionals figuring out where to place their bets in tech.\n\nThe talk covers emerging roles like AI/ML Engineers, Prompt Engineers, Robotics Software Engineers, and Robot Trainers, and then provides a concrete future-proof skills toolkit: coding, data literacy, critical thinking, design thinking, and AI literacy. It closes with a curated learning resources list and community recommendations.",
+    "excerpt": "Emerging roles covered: AI/ML Engineers, Prompt Engineers (working at Anthropic, OpenAI, Microsoft), Robotics Engineers, Robotics Software Engineers — plus a \"Skills That Matter\" toolkit for navigating it all.",
+    "tags": ["Career", "AI", "Future of Work"]
+  },
+  {
+    "title": "Recap: Principles of Design Thinking",
+    "event": null,
+    "year": null,
+    "location": null,
+    "type": "talk",
+    "url": "https://docs.google.com/presentation/d/1An5EH5VlICyFh4ZIFeke_eQEsyqMJdhpUgHlWLr779M/edit",
+    "intro": "A crisp, focused recap of the five stages of Design Thinking — distilled into a single visual slide that captures the entire framework at a glance. It's the kind of reference slide that anchors a longer workshop or serves as a standalone refresher for teams building user-centred products.\n\nThe five stages are covered with precision: Empathize (understand user needs), Define (synthesize findings into core problems), Ideate (generate diverse solutions), Prototype (make ideas tangible), and Evaluate (test rigorously). Clean and memorable.",
+    "excerpt": "\"Ideate: Start generating innovative solutions. The goal is to generate a wide array of diverse ideas to explore different directions your solution could take.\"",
+    "tags": ["Design Thinking", "Product", "UX"]
+  },
+  {
+    "title": "Industrial Automation and IoT in Smart Manufacturing",
+    "event": null,
+    "year": null,
+    "location": null,
+    "type": "talk",
+    "url": "https://docs.google.com/presentation/d/1BI5zhFzNzvaVDydHyHKILtc2XubWOjNgZqZl-qdCark/edit",
+    "intro": "This talk brings software engineering thinking into the world of physical production — exploring how IoT sensors, data analytics, and automation are transforming manufacturing from reactive to predictive. It draws on real examples from GE, Siemens, Coca-Cola, Walmart, and Tesla to show how these concepts play out at industrial scale.\n\nThe session covers process optimisation, predictive maintenance, quality control, worker safety, supply chain visibility, and IoT device management — including lifecycle management, connectivity, security, and firmware updates. It's a rare cross-disciplinary talk that connects the dots between software and hardware systems.",
+    "excerpt": "\"Smart manufacturing allows factory managers to automatically collect and analyze data to make better-informed decisions and optimize production.\" — featuring case studies from GE's Predix, Siemens turbine monitoring, and Tesla's over-the-air updates.",
+    "tags": ["IoT", "Manufacturing", "Systems"]
+  },
+  {
+    "title": "Building and Hosting Web Apps with Flutter",
+    "event": "Flutter Codelabs",
+    "year": null,
+    "location": null,
+    "type": "workshop",
+    "url": "https://docs.google.com/presentation/d/13dXQd1xkVZ491ivuAVh2YTjAUT6ZNF6VUan-QRjfrhI/edit",
+    "intro": "Flutter is known for mobile, but this talk makes the case for Flutter on the web — covering what it takes to build a cross-platform web app from a single codebase and then actually ship it. It's a hands-on codelab-style session that moves from concepts into code.\n\nThe talk explains why Flutter's omnipresent multi-platform support is uniquely valuable for startups building MVPs, covers deployment options across AWS, Firebase, Netlify, and Google Cloud, and includes a live coding component. It closes with resources and a GitHub link to a companion Flutter web app project.",
+    "excerpt": "\"Developers can deploy the same code to all platforms without making significant changes, eventually delivering a native-like experience across all platforms... It also saves time and development costs for startups.\"",
+    "tags": ["Flutter", "Cross-platform", "Web"]
+  },
+  {
+    "title": "Understanding and Enhancing the Customer Experience",
+    "event": null,
+    "year": null,
+    "location": null,
+    "type": "talk",
+    "url": "https://docs.google.com/presentation/d/1iiSrrdykJ58xhH442srxX-TWeRAss2XjENMY1OlUnuk/edit",
+    "intro": "A product-focused session covering the key frameworks for understanding and improving how customers experience a product — from journey mapping and touchpoint analysis to persona development and personalisation strategies. It connects these concepts together to show how they feed and reinforce each other in a continuous loop.\n\nUsing Netflix as a prime example, the talk shows how data-driven personalisation (powered by viewing habits and genre preferences) translates into tangible improvements in engagement and customer satisfaction — a lesson applicable across any product team.",
+    "excerpt": "\"Customer journey mapping involves identifying and analyzing touchpoints — the points of interaction between the customer and the company... Customer engagement data can be used to further refine and personalise the experience, creating a continuous cycle.\"",
+    "tags": ["Product", "Customer Experience", "Strategy"]
+  }
+]
