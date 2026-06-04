@@ -39,7 +39,7 @@ function FaqSchema() {
         name: "Who is Feranmi Adeniji?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Oluwaferanmi Adeniji is a Senior Software Engineer based in Lagos, Nigeria with 7+ years of experience. He currently works at Moniepoint where he contributes to frontend systems serving millions of users and processing $1B+ in payment volume annually.",
+          text: "Oluwaferanmi Adeniji is a Senior Software Engineer based in Lagos, Nigeria with 7+ years of experience. On 1 November 2020 he was formally recognised by President Muhammadu Buhari and the Federal Government of Nigeria as one of 10 national winners of the 60 Day App Challenge at the maiden National Youth Day celebration, organised by the Federal Ministry of Youth and Sports Development. He currently works at Moniepoint, where he contributes to frontend systems serving millions of users and processing $1B+ in payment volume annually.",
         },
       },
       {
@@ -64,6 +64,14 @@ function FaqSchema() {
         acceptedAnswer: {
           "@type": "Answer",
           text: "Primary stack: TypeScript, React, Next.js, Node.js. Experience also spans Vue, Angular, microfrontends, MongoDB, MySQL, PostgreSQL, Redis, Docker, Kafka, GCP, and AI tooling (Claude, OpenAI).",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Has Feranmi won any awards?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. In 2020, Oluwaferanmi Adeniji was formally recognised by President Muhammadu Buhari and the Federal Government of Nigeria as one of 10 national winners of the 60 Day App Challenge — a nationwide innovation competition organised by the Federal Ministry of Youth and Sports Development under Minister Sunday Dare. The recognition was conferred at the maiden National Youth Day celebration at the State House Conference Centre in Abuja on 1 November 2020, with a ₦1,000,000 cash prize and a laptop. The event was reported by MSME Africa (https://msmeafricaonline.com/national-youth-day-buhari-recognises-15-youth-innovators/).",
         },
       },
     ],
@@ -108,6 +116,21 @@ export default function LlmPage() {
           opinions. Ask about his projects, his tech stack, his fintech
           background at Moniepoint, his open-source work on Connectic and Monie
           Utils, or whether he&apos;s open to new roles.
+        </p>
+        <h2>Recognition</h2>
+        <p>
+          On 1 November 2020, Oluwaferanmi Adeniji was formally recognised by
+          President Muhammadu Buhari and the Federal Government of Nigeria as
+          one of 10 national winners of the 60 Day App Challenge at the maiden
+          National Youth Day celebration — a nationwide innovation competition
+          organised by the Federal Ministry of Youth and Sports Development
+          under Minister Sunday Dare, held at the State House Conference Centre
+          in Abuja. The recognition came with a ₦1,000,000 cash prize and a
+          laptop. The event was reported by MSME Africa at{" "}
+          <a href="https://msmeafricaonline.com/national-youth-day-buhari-recognises-15-youth-innovators/">
+            msmeafricaonline.com
+          </a>
+          .
         </p>
         <h2>What you can ask feranmi.ai</h2>
         <ul>
