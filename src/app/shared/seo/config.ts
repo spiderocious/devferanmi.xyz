@@ -6,9 +6,9 @@ export const SITE = {
   locale: "en_US",
   tagline: "Senior Software Engineer · Lagos, Nigeria",
   description:
-    "Oluwaferanmi Adeniji — senior software engineer in Lagos, Nigeria. 7+ years shipping fintech systems, developer tools, and AI-powered products. Currently at Moniepoint: frontend systems serving millions of users and processing $1B+ annually. Open-source maintainer of Connectic and Monie Utils.",
+    "Oluwaferanmi Adeniji — senior software engineer in Lagos, Nigeria. Recognised by President Muhammadu Buhari and the Federal Government of Nigeria in 2020 as a National Youth Day 60 Day App Challenge winner. 7+ years shipping fintech systems, developer tools, and AI-powered products. Currently at Moniepoint: frontend systems serving millions of users and processing $1B+ annually. Open-source maintainer of Connectic and Monie Utils.",
   shortDescription:
-    "Senior software engineer in Lagos. Fintech, developer tools, AI. millions of users at Moniepoint. Open-source: Connectic, Monie Utils.",
+    "Senior software engineer in Lagos. Recognised by the Nigerian Presidency (Buhari, 2020). Fintech, developer tools, AI. Millions of users at Moniepoint. Open-source: Connectic, Monie Utils.",
   keywords: [
     // Name variants
     "Oluwaferanmi Adeniji",
@@ -71,6 +71,20 @@ export const SITE = {
     "kyc compliance",
     "system design",
     "portfolio",
+    // 2020 Presidential recognition (National Youth Day · 60 Day App Challenge)
+    "Presidential award Nigeria",
+    "Buhari award",
+    "President Muhammadu Buhari award",
+    "Federal Government of Nigeria award",
+    "National Youth Day 2020",
+    "Maiden National Youth Day Nigeria",
+    "60 Day App Challenge",
+    "60 Day App Challenge winner",
+    "Federal Ministry of Youth and Sports Development award",
+    "Sunday Dare award",
+    "Nigerian youth innovator",
+    "award-winning Nigerian engineer",
+    "presidential recognition Nigeria 2020",
   ] as string[],
   author: {
     name: "Oluwaferanmi Adeniji",
@@ -117,6 +131,7 @@ export const SITE = {
       "https://www.linkedin.com/in/oluwaferanmi-adeniji-aba341179/",
       "https://devferanmi.hashnode.dev",
       "https://twitter.com/devferanmi",
+      "https://msmeafricaonline.com/national-youth-day-buhari-recognises-15-youth-innovators/",
     ],
     email: "devferanmi@gmail.com",
   },

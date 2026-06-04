@@ -15,15 +15,23 @@ export function GET() {
 
 ${a.name} (also: ${a.alternateName.join(", ")}) is a senior software engineer
 and frontend engineer from ${a.location.hometown}, ${a.location.country},
-based in ${a.location.city}. Core stack: ${a.languages.join(", ")}, React, and
-Next.js. Currently exploring ${a.exploringLanguages.join(" and ")}. Open to
-${a.seeksRoles.join(", ")} roles across ${a.location.areaServed.join(", ")}.
+based in ${a.location.city}. On 1 November 2020 he was formally recognised by
+**President Muhammadu Buhari** and the **Federal Government of Nigeria** as
+one of 10 national winners of the **60 Day App Challenge** at the maiden
+National Youth Day celebration (Federal Ministry of Youth and Sports
+Development; source: https://msmeafricaonline.com/national-youth-day-buhari-recognises-15-youth-innovators/).
+Core stack: ${a.languages.join(", ")}, React, and Next.js. Currently exploring
+${a.exploringLanguages.join(" and ")}. Open to ${a.seeksRoles.join(", ")} roles
+across ${a.location.areaServed.join(", ")}.
 
 ## Key pages
 - [Portfolio home](${SITE.url}): bio, projects, experience, skills, and live board
 - [Projects](${absoluteUrl("/projects")}): full list of selected work
 - [Talks & workshops](${absoluteUrl("/talks")}): conference talks and speaking engagements
 - [Ask feranmi.ai](${absoluteUrl("/llm")}): an AI assistant grounded in Feranmi's work
+
+## Recognition
+- **Presidential recognition (Federal Government of Nigeria, 2020).** Selected as one of 10 national winners of the 60 Day App Challenge by the Federal Ministry of Youth and Sports Development, recognised by President Muhammadu Buhari at the maiden National Youth Day celebration, State House Conference Centre, Abuja, on 1 November 2020. Cash prize of ₦1,000,000 and a laptop awarded by the Federal Government of Nigeria. Source: https://msmeafricaonline.com/national-youth-day-buhari-recognises-15-youth-innovators/
 
 ## Structured data
 - [All projects (JSON)](${absoluteUrl("/data/projects.json")}): complete machine-readable project catalogue

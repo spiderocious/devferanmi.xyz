@@ -75,6 +75,52 @@ export function buildPersonSchema() {
         email: `mailto:${SITE.author.email}`,
         sameAs: SITE.author.sameAs,
         knowsLanguage: ["English"],
+        // Federal Government of Nigeria recognition (2020 National Youth Day,
+        // 60 Day App Challenge). Surfaced both as a plain `award` string (which
+        // Google's Knowledge Graph picks up) and as a structured credential
+        // with the awarding organization, date, and the news article that
+        // documents it (subjectOf).
+        award: [
+          "Presidential recognition by President Muhammadu Buhari and the Federal Government of Nigeria — 60 Day App Challenge national winner, Maiden National Youth Day, 1 November 2020 (Federal Ministry of Youth and Sports Development).",
+        ],
+        hasCredential: [
+          {
+            "@type": "EducationalOccupationalCredential",
+            name: "60 Day App Challenge — National Winner",
+            credentialCategory: "Government Innovation Award",
+            dateCreated: "2020-11-01",
+            recognizedBy: {
+              "@type": "GovernmentOrganization",
+              name: "Federal Government of Nigeria",
+              department: {
+                "@type": "GovernmentOrganization",
+                name: "Federal Ministry of Youth and Sports Development",
+              },
+              member: {
+                "@type": "Person",
+                name: "Muhammadu Buhari",
+                jobTitle: "President of the Federal Republic of Nigeria",
+              },
+              location: {
+                "@type": "Place",
+                name: "State House Conference Centre, Abuja, Nigeria",
+              },
+            },
+            about: "Nationwide innovation competition recognising Nigerian youth software innovators. Selected as one of 10 national winners from thousands of entries, with a ₦1,000,000 cash prize and laptop awarded by the Federal Government of Nigeria.",
+            url: "https://msmeafricaonline.com/national-youth-day-buhari-recognises-15-youth-innovators/",
+          },
+        ],
+        subjectOf: [
+          {
+            "@type": "NewsArticle",
+            headline:
+              "National Youth Day: Buhari Recognises 15 Youth Innovators",
+            datePublished: "2020-11-02",
+            url: "https://msmeafricaonline.com/national-youth-day-buhari-recognises-15-youth-innovators/",
+            publisher: { "@type": "Organization", name: "MSME Africa" },
+            about: { "@id": personId },
+          },
+        ],
         // Roles actively being pursued — signals availability to recruiters.
         seeks: SITE.author.seeksRoles.map((role) => ({
           "@type": "Demand",
