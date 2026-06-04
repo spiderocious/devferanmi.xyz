@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SITE } from "./shared/seo/config";
 import { LlmFloatingTrigger } from "./components/llm-trigger";
 import { HelloPopup } from "./components/hello-popup";
+import { RouteProgress } from "./components/route-progress";
 import { WebMcp } from "./components/webmcp";
 import Script from "next/script";
 
@@ -108,6 +110,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Suspense fallback={null}>
+          <RouteProgress />
+        </Suspense>
         {children}
         <HelloPopup />
         <LlmFloatingTrigger />

@@ -83,6 +83,7 @@ export default function TalksPage() {
         <main className="flex-1 max-w-6xl mx-auto px-4 py-8 w-full">
           <Link
             href="/"
+            prefetch
             className="text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
           >
             ← back

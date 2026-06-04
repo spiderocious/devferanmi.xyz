@@ -41,6 +41,7 @@ export default function ProjectsPage() {
           <header className="mb-12">
             <Link
               href="/"
+              prefetch
               className="text-sm text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
             >
               ← back

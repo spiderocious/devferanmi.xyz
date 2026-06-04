@@ -130,6 +130,7 @@ export function AppShell({
                   <Link
                     key={t.key}
                     href={t.href}
+                    prefetch
                     className={`${triggerCls} inline-flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-1 text-sm`}
                   >
                     {t.label}
