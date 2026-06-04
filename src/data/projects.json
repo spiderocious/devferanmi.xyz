@@ -1,4 +1,49 @@
 [  {
+    "title": "FileSalad",
+    "description": "Turn a file into a public link. The client uploads bytes directly to S3-compatible storage via a presigned URL — the backend checks quota, signs the URL, and tracks metadata, but never touches the bytes. Ships as two clients (anonymous web one-pager + authenticated Electron menu-bar app) over one Go API, sharing a custom React UI library.",
+    "badge": "Developer Tool",
+    "impacts": "A zero-byte-touch file-sharing API: presigned PUT/GET, share codes, feature flags, and a BYO-bucket Electron desktop client alongside an anonymous one-pager web app. Engineered for predictable cost (the backend never proxies bytes) and clean separation across four independent packages.",
+    "links": [
+      {
+        "type": "demo",
+        "url": "https://usefilesalad.xyz",
+        "label": "Live"
+      },
+      {
+        "type": "github",
+        "url": "https://github.com/spiderocious/file-salad-api-service",
+        "label": "Backend"
+      },
+      {
+        "type": "github",
+        "url": "https://github.com/spiderocious/filesalad-web",
+        "label": "Web"
+      },
+      {
+        "type": "github",
+        "url": "https://github.com/spiderocious/file-salad-electron-desktop-app",
+        "label": "Desktop"
+      },
+      {
+        "type": "github",
+        "url": "https://github.com/spiderocious/file-salad-ui-lib",
+        "label": "UI Library"
+      }
+    ],
+    "techStack": [
+      "go",
+      "gin",
+      "mongodb",
+      "redis",
+      "react",
+      "typescript",
+      "vite",
+      "electron"
+    ],
+    "fullDetails": "## Problem Statement\n\nGetting a public link to a file shouldn't require renting bandwidth. Most upload services proxy every byte through their own servers — which means every megabyte costs the operator twice (ingress + egress) and gets slower the bigger the file. FileSalad answers a narrower question: what if the backend only handles permissions and metadata, and the bytes flow **straight from the client to S3-compatible storage**?\n\n## Proposed Solution\n\nFileSalad is **one Go API with two clients** on top of a shared design system:\n\n- **`file-salad-web`** — anonymous one-pager. Drop a file, get a link. No account, no friction. Capped per browser via IP + an `X-Fingerprint` header.\n- **`file-salad-electron`** — authenticated macOS menu-bar app. Email + password, JWT + rotating refresh sessions, a monthly quota, and the option of **Bring-Your-Own-Bucket (BYOK)** so power users can point uploads at their own R2/S3/Tigris/MinIO.\n- **`backend`** — Go + Gin API that authenticates the request, checks quota, mints a **presigned PUT URL**, and records metadata. It **never sees the bytes**.\n- **`file-salad-ui-lib`** — independently published React component library + design tokens used by both clients.\n\nEvery upload follows the same shape: **presign → client PUTs bytes straight to storage → complete**. **Share codes** mint short, human-shareable codes anyone can redeem for a fresh download URL. **Feature flags** (`/features`) toggle rollouts like share-codes and BYOK without a redeploy.\n\n## Full Solution Details\n\n- **Two surfaces, one API** — the web app and the desktop app hit the same Go backend, with different auth modes (anonymous vs JWT) gating different endpoints.\n- **Zero-byte-touch backend** — the server never proxies file content; it's a permission + metadata broker. Storage cost scales with the bucket bill, not the server bill.\n- **Anonymous upload caps** — IP + fingerprint-based throttling keeps the free web client from being a credit-card-melter.\n- **Authenticated desktop** — JWT access token with rotating refresh sessions, monthly quota tracking, and a BYOK upload path for users who want to host their own storage.\n- **Share codes** — short, redeemable codes that issue a fresh signed download URL on demand (preserves URL expiry without breaking shared links).\n- **Feature flags** — a `/features` endpoint toggles share-codes, BYOK, and other rollouts at runtime.\n- **Independent packages** — four `package.json`/`go.mod`s, no monorepo, no root workspace; each ships on its own.\n\n## Technical Documentation\n\n**Backend** — Go 1.25 + Gin, MongoDB (official driver) for metadata, Redis (`go-redis/v9`) for ephemeral state (with `miniredis` for tests), AWS SDK v2 (`aws-sdk-go-v2/service/s3`) for presigning against any S3-compatible storage, `golang-jwt/v5` for auth, ULIDs (`oklog/ulid/v2`) for IDs, and `godotenv` for config. Idiomatic `cmd/server` + `internal/...` feature-package layout.\n\n**Web** — React 19 + Vite + TypeScript, TanStack Query v5, React Router v6, the author's own **Meemaw** utility library, Lucide icons, and the shared `file-salad-ui-lib` consumed straight from GitHub by tag.\n\n**Desktop** — Electron + `electron-vite` + React 19, packaged with `electron-builder` (mac arm64), AWS request signing via `aws4` for BYOK uploads, `zod` for runtime validation, `tailwind-merge` + `clsx` for styling, and the same shared UI library.\n\n**UI Library** — React + Vite, Storybook for docs, dual ESM/CJS exports, `tailwindcss` compiled to a single distributable stylesheet, with a `verify-exports.mjs` script that gates the build on the exports map being correct.\n\n## Tech Stack\n\nGo 1.25, Gin, MongoDB, Redis, AWS SDK v2 (S3 presign), JWT, ULIDs (backend); React 19, TypeScript, Vite, TanStack Query v5, React Router v6, Meemaw, Lucide (web); Electron, electron-vite, electron-builder, aws4, zod (desktop); Tailwind, Storybook, dual ESM/CJS exports (UI library).\n\n## System Design\n\n```\nfile-salad-web ──┐\n                 ├──► backend (Gin) ──presign──► S3-compatible\n file-salad-electron ─┘   │   JWT + quota                   storage\n                          │   share codes                  (Tigris / R2 /\n                          │   feature flags                 MinIO / S3)\n                          ▼\n                  MongoDB · Redis\n\n     client ──PUT bytes─► storage   (backend never sees bytes)\n     client ──complete──► backend   (metadata + share code)\n```\n\n## Smart Architectural Decisions\n\n- **Backend is a broker, not a pipe.** By only issuing presigned URLs and recording metadata, the server's cost and latency are decoupled from file size — a 10 GB upload is the same workload as a 10 KB one.\n- **Two clients, one contract.** Anonymous web and authenticated desktop share the same API by varying *which* endpoints they hit, not by forking the API. Auth shape is the only diff.\n- **BYOK as a first-class feature.** Letting users point uploads at their own bucket sidesteps the operator-cost ceiling that kills most free upload tools.\n- **Independent, publishable packages.** No monorepo glue — the UI library is consumed by Git tag, each app builds on its own, and the four pieces version independently.\n- **Feature flags via API.** `/features` lets share-codes, BYOK, and other behaviors flip on/off without a redeploy — useful when the same backend serves two different client surfaces.\n- **`miniredis` in tests + ULIDs for IDs** — small choices that show backend taste: deterministic local testing without spinning up Redis, and time-sortable IDs that beat UUIDs for log-friendly debugging.\n\n## Impacts\n\nA file-sharing service that decouples server cost from file size, ships two distinct user experiences (anonymous web + authenticated desktop) over a single zero-byte-touch API, and gives power users BYO-bucket control — all with a coherent in-house React design system underneath.\n\n## Demonstrated Skills\n\nGo backend engineering with the AWS SDK v2 (presigning, S3-compatible abstraction); auth design (anonymous fingerprinting + JWT with refresh sessions side-by-side); cost-aware system design (broker vs proxy, BYOK); Electron app delivery (electron-vite + electron-builder, mac arm64 packaging); design-system thinking (publishable UI library with verified exports); cross-client API contract design; feature flags as a runtime control plane.",
+    "notes": "**Why it stands out to a recruiter**\n\n- **Cost-aware system design.** The backend never touches bytes — a deliberate architectural choice that makes operator economics scale with the storage bill, not the server bill. Most upload services proxy; FileSalad doesn't, and you can explain why.\n- **Two very different clients on one API.** Anonymous web one-pager + authenticated Electron menu-bar app, sharing a backend with different auth modes. Shows API contract design and product surface judgment.\n- **BYO-bucket is the killer detail.** Letting authenticated users point uploads at their own R2/S3/Tigris/MinIO breaks past the free-tier ceiling that usually kills these tools — and shows trust-boundary thinking (you have to handle their credentials safely).\n- **Polished engineering taste.** Go 1.25 + Gin with `miniredis` for tests + ULIDs for IDs; Electron packaged via `electron-vite` + `electron-builder` with macOS arm64; UI library with a `verify-exports.mjs` step gating the build. The kind of choices that read as 'has shipped real software before.'\n- **Four coordinated repos, no monorepo glue.** Each package versions and ships independently — the UI library is consumed by Git tag — which shows confidence with package boundaries instead of hiding behind a workspace."
+  },
+  {
     "title": "Dipstick",
     "description": "A digital station logbook for Nigerian filling-station owners running one to ten branches. Managers record the day end-to-end — opening dip, attendant pump readings, tanker deliveries, expenses, closing dip — and the owner reads a single morning roll-up across every branch. It is the cashier's worn exercise book made shared, signed, and impossible to tamper with after the fact.",
     "badge": "SaaS",
@@ -30,6 +75,11 @@
     "badge": "Fintech",
     "impacts": "A statute-grounded tax engine where the LLM never invents a number: a pure-TypeScript NTA 2025 calculator owns every figure, while a two-tier OpenAI pipeline (cheap gpt-4o-mini gate + gpt-4o analysis) only extracts and classifies bank-statement inflows. Built as an Nx + pnpm monorepo — Vite/React 19 frontend, Express + MongoDB backend with SSE live status, a circuit breaker, and an LLM stub transport for deterministic CI.",
     "links": [
+      {
+        "type": "demo",
+        "url": "https://usetaxlens.xyz",
+        "label": "Live"
+      },
       {
         "type": "github",
         "url": "https://github.com/spiderocious/taxlens",
@@ -69,8 +119,8 @@
       },
       {
         "type": "demo",
-        "url": "https://medcord.netlify.app",
-        "label": "Live Demo"
+        "url": "https://usemedcord.xyz",
+        "label": "Live"
       }
     ],
     "techStack": [
@@ -123,6 +173,11 @@
     "badge": "Marketplace",
     "impacts": "Connection-fee marketplace that monetizes introductions, not lessons: verified tutors, masked identities, on-platform real-time chat, and a trust team for moderation. Express + Socket.io backend, React frontend.",
     "links": [
+      {
+        "type": "demo",
+        "url": "https://usepracket.xyz",
+        "label": "Live"
+      },
       {
         "type": "github",
         "url": "https://github.com/spiderocious/pracket-web",
@@ -217,6 +272,11 @@
     "badge": "Mobile Marketplace",
     "impacts": "Two-sided expert-call marketplace: discover → book → pay → call → review, with KYC onboarding, in-app wallet/payouts via Paystack, real-time RTC calls, and calendar invites. Flutter app + TypeScript backend.",
     "links": [
+      {
+        "type": "demo",
+        "url": "https://ohlify.xyz",
+        "label": "Live"
+      },
       {
         "type": "github",
         "url": "https://github.com/spiderocious/ohlify-app",
