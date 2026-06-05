@@ -125,23 +125,40 @@ export function AppShell({
         >
           {!focus && (
             <TabsList className="text-muted-foreground inline-flex h-10 w-full lg:w-fit items-center justify-center rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 p-1">
-              {ENABLED_TABS.map((t) =>
-                t.href ? (
-                  <Link
-                    key={t.key}
-                    href={t.href}
-                    prefetch
-                    className={`${triggerCls} inline-flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-1 text-sm`}
-                  >
-                    {t.label}
-                    <ArrowUpRightIcon className="w-3 h-3 opacity-60" />
-                  </Link>
-                ) : (
+              {ENABLED_TABS.map((t) => {
+                if (t.href && t.external) {
+                  return (
+                    <a
+                      key={t.key}
+                      href={t.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${triggerCls} inline-flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-1 text-sm`}
+                    >
+                      {t.label}
+                      <ArrowUpRightIcon className="w-3 h-3 opacity-60" />
+                    </a>
+                  );
+                }
+                if (t.href) {
+                  return (
+                    <Link
+                      key={t.key}
+                      href={t.href}
+                      prefetch
+                      className={`${triggerCls} inline-flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-1 text-sm`}
+                    >
+                      {t.label}
+                      <ArrowUpRightIcon className="w-3 h-3 opacity-60" />
+                    </Link>
+                  );
+                }
+                return (
                   <TabsTrigger key={t.key} value={t.key} className={triggerCls}>
                     {t.label}
                   </TabsTrigger>
-                )
-              )}
+                );
+              })}
             </TabsList>
           )}
 

@@ -28,6 +28,7 @@ across ${a.location.areaServed.join(", ")}.
 - [Portfolio home](${SITE.url}): bio, projects, experience, skills, and live board
 - [Projects](${absoluteUrl("/projects")}): full list of selected work
 - [Talks & workshops](${absoluteUrl("/talks")}): conference talks and speaking engagements
+- [Blog](${SITE.social.blog}): essays and notes by ${a.name} on software engineering, frontend architecture, JavaScript, system design, fintech, and AI
 - [Ask feranmi.ai](${absoluteUrl("/llm")}): an AI assistant grounded in Feranmi's work
 
 ## Recognition

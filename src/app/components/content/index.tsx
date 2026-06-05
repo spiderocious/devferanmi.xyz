@@ -5,7 +5,6 @@ import { Tools } from "./parts/tools";
 import { SoftSkills } from "./parts/soft-skills";
 import { getBoard } from "../../shared/api";
 import { AppShell } from "../app-shell";
-import { SeoBio } from "../seo-bio";
 import Header from "../header";
 
 export default async function Content() {
@@ -24,7 +23,8 @@ export default async function Content() {
             board: <Board board={board} />,
           }}
         />
-        <SeoBio />
+        {/* SeoBio is rendered from page.tsx (outside the Suspense) so its
+            crawlable copy appears in the SSR HTML, not just after hydration. */}
       </main>
     </div>
   );

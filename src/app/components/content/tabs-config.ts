@@ -15,6 +15,7 @@ export type TabKey =
   | "technical"
   | "soft"
   | "board"
+  | "blog"
   | "talks";
 
 export interface TabConfig {
@@ -24,6 +25,8 @@ export interface TabConfig {
   /** When set, clicking the tab navigates to this URL instead of swapping the
    *  panel content. Tabs with `href` don't need a `panels[key]` entry. */
   href?: string;
+  /** External href: render as <a target="_blank"> instead of <Link>. */
+  external?: boolean;
 }
 
 export const TABS: TabConfig[] = [
@@ -32,6 +35,13 @@ export const TABS: TabConfig[] = [
   { key: "technical", label: "Technical Skills", enabled: true },
   { key: "soft", label: "Soft Skills", enabled: true },
   { key: "board", label: "Board", enabled: true },
+  {
+    key: "blog",
+    label: "Blog",
+    enabled: true,
+    href: "https://blog.devferanmi.xyz",
+    external: true,
+  },
   { key: "talks", label: "Talks", enabled: true, href: "/talks" },
 ];
 

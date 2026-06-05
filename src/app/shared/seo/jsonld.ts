@@ -3,6 +3,7 @@ import { SITE, absoluteUrl } from "./config";
 export function buildPersonSchema() {
   const personId = `${SITE.url}#person`;
   const websiteId = `${SITE.url}#website`;
+  const blogId = `${SITE.social.blog}#blog`;
   const loc = SITE.author.location;
 
   const areaServed = loc.areaServed.map((name) => ({
@@ -75,6 +76,10 @@ export function buildPersonSchema() {
         email: `mailto:${SITE.author.email}`,
         sameAs: SITE.author.sameAs,
         knowsLanguage: ["English"],
+        // Bidirectional link to the personal blog node defined below.
+        // The Blog itself sets `author: { @id: #person }`; this is the reverse
+        // edge, giving search engines a complete identity ↔ blog mapping.
+        workExample: { "@id": blogId },
         // Federal Government of Nigeria recognition (2020 National Youth Day,
         // 60 Day App Challenge). Surfaced both as a plain `award` string (which
         // Google's Knowledge Graph picks up) and as a structured credential
@@ -163,6 +168,35 @@ export function buildPersonSchema() {
         inLanguage: "en-US",
         about: { "@id": personId },
         publisher: { "@id": personId },
+        // Explicitly relate this site to the author's blog so Google
+        // understands they are part of the same identity graph.
+        relatedLink: SITE.social.blog,
+      },
+      // The author's personal blog — modelled as a first-class entity so
+      // search engines (and AI agents reading JSON-LD) attribute it to the
+      // same person as the portfolio.
+      {
+        "@type": "Blog",
+        "@id": blogId,
+        url: SITE.social.blog,
+        name: `${SITE.author.name} — Blog`,
+        description: `Essays and notes by ${SITE.author.name} on software engineering, frontend architecture, JavaScript, system design, fintech, and AI engineering.`,
+        inLanguage: "en-US",
+        author: { "@id": personId },
+        publisher: { "@id": personId },
+        about: { "@id": personId },
+        keywords: [
+          "software engineering",
+          "frontend architecture",
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "Next.js",
+          "system design",
+          "fintech",
+          "AI engineering",
+          "developer tools",
+        ].join(", "),
       },
       {
         "@type": "ProfilePage",
@@ -171,6 +205,9 @@ export function buildPersonSchema() {
         name: `${SITE.author.name} — ${SITE.author.role}`,
         mainEntity: { "@id": personId },
         isPartOf: { "@id": websiteId },
+        // Surface the blog from the ProfilePage too — another signal tying
+        // the identity → blog mapping together.
+        relatedLink: SITE.social.blog,
       },
     ],
   };

@@ -85,6 +85,13 @@ export const SITE = {
     "Nigerian youth innovator",
     "award-winning Nigerian engineer",
     "presidential recognition Nigeria 2020",
+    // Blog
+    "Feranmi blog",
+    "devferanmi blog",
+    "Oluwaferanmi Adeniji blog",
+    "Nigerian software engineering blog",
+    "frontend engineering essays",
+    "blog.devferanmi.xyz",
   ] as string[],
   author: {
     name: "Oluwaferanmi Adeniji",

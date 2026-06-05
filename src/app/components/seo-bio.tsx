@@ -22,7 +22,17 @@ export function SeoBio() {
         Oluwaferanmi — is a senior software engineer and frontend engineer from
         Ogbomoso, Nigeria, currently based in Lagos. With 7+ years building
         production software, he contributes to frontend systems serving millions of users
-        and processing $1B+ in payments annually.
+        and processing $1B+ in payments annually. He writes about engineering
+        on his blog at{" "}
+        <a
+          href="https://blog.devferanmi.xyz"
+          target="_blank"
+          rel="noopener noreferrer me author"
+          className="underline underline-offset-2 hover:text-zinc-900 dark:hover:text-zinc-100"
+        >
+          blog.devferanmi.xyz
+        </a>
+        .
       </p>
 
       <p>

@@ -5,6 +5,7 @@ import { buildPageMetadata } from "./shared/seo/metadata";
 import { buildPersonSchema } from "./shared/seo/jsonld";
 import { JsonLdScript } from "./shared/seo/json-ld-script";
 import { SITE } from "./shared/seo/config";
+import { SeoBio } from "./components/seo-bio";
 
 export const revalidate = 3600;
 
@@ -21,6 +22,14 @@ export default function Home() {
       <Suspense>
         <Content />
       </Suspense>
+      {/* Crawlable bio prose. Rendered above the Suspense boundary so its
+          target-keyword content (blog, recognition, locations, languages)
+          appears in the SSR HTML — not just after client hydration. */}
+      <div className="text-zinc-900 dark:text-zinc-100">
+        <div className="max-w-7xl mx-auto px-4 pb-12">
+          <SeoBio />
+        </div>
+      </div>
     </>
   );
 }
