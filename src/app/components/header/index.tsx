@@ -28,7 +28,7 @@ export default function Header() {
           </h1>
 
           <div className="text-sm text-zinc-600 dark:text-zinc-400 mb-6 max-w-2xl">
-            I&apos;m a Senior Frontend Engineer with 7+ years crafting digital
+            I&apos;m a Senior Software Engineer (Full-Stack, Frontend, Backend, Mobile) with 7+ years crafting digital
             experiences across fintech, ecommerce, and developer tools. I care
             deeply about performance, clean architecture, and building products
             that genuinely help people. Currently at{" "}
